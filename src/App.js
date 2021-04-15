@@ -4,7 +4,10 @@ import './App.css';
 
 function App() {
   return (
-    <RootContainer/>
+    //Root Container contains components
+    <div className="app">
+      <RootContainer/>
+    </div>
   )
 }
 

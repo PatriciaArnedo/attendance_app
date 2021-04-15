@@ -3,24 +3,29 @@ import Student from './student.js'
 
 function Modal(props) {
 
+    //Exits the modal when the user clicks outside of the modal
     window.onclick = function (event) {
         if (event.target.className === "modal") {
             props.setShowModal(currentShowModal => !props.showModal)
         }
     }
 
+    //use state hook to store students fetched from json server
     const [students, setStudents] = useState([])
 
-    useEffect (() => {
+    //fetches student list from a json server
+    useEffect(() => {
         fetch(`http://localhost:4000/students`)
-        .then(r => r.json())
-        .then(studentsArray => {
-            console.log(studentsArray)
-            setStudents(studentsArray)
-        })
-        .catch(console.log)
+            .then(r => r.json())
+            .then(studentsArray => {
+                console.log(studentsArray)
+                setStudents(studentsArray)
+            })
+            .catch(console.log)
     }, [])
 
+
+    //renders all student names fetched from json server
     function renderStudents() {
         return students.map(student => <Student key={student.id} student={student} />)
     }
@@ -29,10 +34,14 @@ function Modal(props) {
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <p>Attendance</p>
+                    <button className="close-button" onClick={() => props.setShowModal(currentShowModal => !props.showModal)}>x</button>
+                    Attendance
                 </div>
-                <button onClick={() => props.setShowModal(currentShowModal => !props.showModal)}>Close</button>
-                {renderStudents()}
+
+                {/* calls the render students function */}
+                <div className="student-container">
+                    {renderStudents()}
+                </div>
             </div>
         </div>
     )
