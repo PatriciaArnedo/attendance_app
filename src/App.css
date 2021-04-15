@@ -13,7 +13,6 @@
 }
 
 .modal {
-  /* display: none; */
   position: fixed; 
   z-index: 1;  
   padding-top: 100px; /* Location of the box */
@@ -29,8 +28,6 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  /* padding: 20px; */
-  /* border: 1px solid #888; */
   height: 600px;
   width: 750px;
   display: flex;
@@ -49,11 +46,17 @@
   font-size: 30px;
   font-weight: bold;
   margin-top: 8px;
-  outline: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: center;
   text-align: center;
+}
+
+.student {
+  font-size: 16px;
+  font-weight: 400;
+  height: 100px;
+  border-top: 5px;
 }
