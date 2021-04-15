@@ -59,6 +59,10 @@
   margin-right: 100px;
 }
 
+.timer-icon {
+  font-size: large;
+}
+
 /* student styling */
 
 .student-container {
@@ -102,7 +106,7 @@
 }
 
 .student-initials {
-  background-color: rgb(150, 132, 179);
+  background-color: rgb(164, 161, 192);
   color: white;
   font-weight: bold;
   border-radius: 50%;

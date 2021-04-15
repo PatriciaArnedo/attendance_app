@@ -36,7 +36,7 @@ function Modal(props) {
             <div className="modal-content">
                 <div className="modal-header">
                     <button className="close-button" onClick={() => props.setShowModal(currentShowModal => !props.showModal)}>x</button>
-                    <Icon>timer</Icon>
+                    <Icon style={{ fontSize:50, color: 'rgb(164, 161, 192)' }} >timer</Icon>
                     Attendance
                 </div>
 
