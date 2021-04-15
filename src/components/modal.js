@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Student from './student.js'
+import { Icon } from '@material-ui/core'
 
 function Modal(props) {
 
@@ -35,6 +36,7 @@ function Modal(props) {
             <div className="modal-content">
                 <div className="modal-header">
                     <button className="close-button" onClick={() => props.setShowModal(currentShowModal => !props.showModal)}>x</button>
+                    <Icon>timer</Icon>
                     Attendance
                 </div>
 
