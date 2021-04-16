@@ -20,19 +20,21 @@ function Modal(props) {
     //holds the current selected date in state
     const [clickedDate, setClickedDate] = useState("2021-04-16")
 
+    //gets an array of unique dates from data
     function getUniqueDates() {
         const datesArray = props.students.map(student => student.date)
         const uniqueDatesArray = datesArray.filter((date, currentIdx) => datesArray.indexOf(date) === currentIdx)
         return uniqueDatesArray.sort()
     }
 
+    //renders list of dates
     function renderDays() {
         let datesArray = getUniqueDates()
         console.log(datesArray, "dates to be rendered")
-        return datesArray.map((date, index) => (<DayComponent onClick={() => setClickedDate(date)} key={date} date={date} id={index} />))
+        return datesArray.map((date, index) => (<DayComponent onClick={() => setClickedDate(date)} key={date} date={date} id={index} currentDate={clickedDate} />))
     }
 
-
+    //filters students by date
     function studentByDate(date) {
         return props.students.filter(student => student.date === date)
     }
@@ -40,7 +42,7 @@ function Modal(props) {
     //renders all student names fetched from json server
     function renderStudents() {
         if (!clickedDate) {
-            return <div/>
+            return <div />
         }
         return studentByDate(clickedDate).map(student => <Student key={student.date + ' ' + student.id} student={student} />)
     }
@@ -49,14 +51,17 @@ function Modal(props) {
     return (
         <div className="modal">
             <div className="modal-content">
+
                 <div className="modal-header">
                     <button className="close-button" onClick={() => props.setShowModal(currentShowModal => !props.showModal)}>x</button>
                     <Icon style={{ fontSize: 50, color: 'rgb(164, 161, 192)' }} >timer</Icon>
                     Attendance
                 </div>
+
                 <div className="calendar-container">
                     {renderDays()}
                 </div>
+
                 {/* calls the render students function */}
                 <div className="student-container">
                     {renderStudents()}

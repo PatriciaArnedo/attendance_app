@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 function Day(props) {
 
+    const isActive = props.date === props.currentDate
+
     //displays day of the week
     function weekDay() {
         switch (props.id) {
@@ -22,12 +24,16 @@ function Day(props) {
         }
     }
 
+
     //displays the day of the week and date
     return (
-        <div onClick={()=>{props.onClick()}} className="calendar-day">
+        <div onClick={() => {
+            props.onClick() }} className="calendar-day">
             {weekDay() + " "}
             <br></br><br></br>
-            {props.date.slice(8)}
+            <div className= {isActive ? "date-selected" : null}>
+                {props.date.slice(8)}
+            </div>
         </div>
     )
 }

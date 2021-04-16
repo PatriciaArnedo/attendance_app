@@ -25,8 +25,11 @@ function Student(props) {
 
     }
 
+
     function updateTime(inTime, updateValue) {
+        //updates the in or out time for the specified student 
         const updatedStudents = props.students.map(student => {
+            //maps over array of students replacing the current student with a copy containing updated time
             if (student.date === props.student.date && student.id === props.student.id) {
                 const copy = { ...student }
                 if (inTime) {
@@ -61,7 +64,6 @@ function Student(props) {
                 <Icon style={{ fontSize: 50, color: 'rgb(164, 161, 192)' }} >timer</Icon>
             </span>
         )
-
     }
 
     //function that displays sign out timer icon or timestamp
@@ -106,8 +108,9 @@ function Student(props) {
 
                 <div className="time-column">
                     <span style={{ fontSize: '12px', fontWeight: '1000' }}>
-                        {inTimerClicked ? "Time In " : null}
+                        {inTimerClicked ? "Time In " : null} 
                     </span>
+                    <br></br>
                     <span style={{ fontSize: '16px', fontWeight: '400' }}>
                         {inTimeDisplay()}
                     </span>
@@ -117,13 +120,14 @@ function Student(props) {
                     <span style={{ fontSize: '12px', fontWeight: '800' }}>
                         {outTimerClicked ? "Time Out " : null}
                     </span>
+                    <br></br>
                     <span style={{ fontSize: '16px', fontWeight: '400' }}>
                         {outTimeDisplay()}
                     </span>
                 </div>
 
             </div>
-            {editingInTime !== undefined? <EditModal updateTime={updateTime} editingInTime={editingInTime} setEditingInTime={setEditingInTime} student={props.student} />: null}
+            {editingInTime !== undefined ? <EditModal updateTime={updateTime} editingInTime={editingInTime} setEditingInTime={setEditingInTime} student={props.student} /> : null}
         </div>
     )
 }

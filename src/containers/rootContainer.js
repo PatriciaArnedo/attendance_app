@@ -10,7 +10,7 @@ function RootContainer(props){
     const [ showModal, setShowModal] = useState(false)
 
 
-    //fetches student list from a json server
+    //gets list from imported json file
     useEffect(() => {
         props.getStudents()
         console.log("TEST in use effect")

@@ -29,8 +29,7 @@ function EditModal(props) {
                             value={editTime}
                             onChange={e => setEditTime(e.target.value)}
                         />
-                        <br></br>
-                        <button>Save</button>
+                        <button className="save-button">Save</button>
                     </form>
                 </div>
             </div>

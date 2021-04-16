@@ -49,11 +49,11 @@
   font-size: 30px;
   font-weight: bold;
   margin-top: 8px;
-  display: table-cell;
+  display: flex;
   flex-direction: row;
   justify-content: center;
-  vertical-align: middle;
   text-align: center;
+  align-items: center;
   /* border: 1px solid; */
 }
 
@@ -65,7 +65,8 @@
   background-color: rgb(155, 155, 155);
   color: white;
   font-size: 18px;
-  margin-right: 100px;
+  position: absolute;
+  margin-right: 690px;
 }
 
 .timer-icon {
@@ -75,7 +76,6 @@
 /* student styling */
 
 .student-container {
-  margin-top: 50px;
   border-bottom: .5px solid rgb(202, 202, 202) ;
 }
 
@@ -160,6 +160,19 @@
   align-items: center;
 }
 
+.date-selected{
+  background-color: rgb(25, 152, 255);
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 /* edit modal styling */
 .edit-modal {
   position: fixed; 
@@ -178,7 +191,20 @@
   background-color: #fefefe;
   margin: auto;
   height: 200px;
-  width: 200px;
+  width: 300px;
   text-align: center;
   border-radius: 5px;
+}
+
+.edit-form {
+  padding-top: 30px;
+}
+
+.save-button {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(78, 175, 255);
+  color: white;
+  height: 23px;
+  font-weight: 500;
 }
