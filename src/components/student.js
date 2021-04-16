@@ -15,21 +15,8 @@ function Student(props) {
 
         //gets current datetime
         let d = new Date()
-        console.log(d, "original")
-
-        //gets only the time from datetime
-        let timeArray = d.toLocaleTimeString().split(" ")
-        console.log(timeArray, "array")
-
-        //removes milliseconds from time
-        timeArray[0] = timeArray[0].slice(0, 4)
-        console.log(timeArray, "sliced array")
-
-        //adds space between the time and am/pm
-        timeArray.splice(1, 0, ' ')
-        console.log(timeArray, "spliced array")
-
-        return timeArray
+        return formatAMPM(d)
+    
     }
 
     //function that displays timer icon or timestamp
@@ -50,13 +37,13 @@ function Student(props) {
         if (outTimerClicked) {
             return getTime()
         } else {
-                if (inTimerClicked){
-                    return(
-                <span onClick={() => setOutTimerClicked(currentOutTimerClicked => !outTimerClicked)}>
-                    <Icon style={{ fontSize: 50, color: 'rgb(164, 161, 192)' }} >timer_off</Icon>
-                </span>
-                    )
-                }
+            if (inTimerClicked) {
+                return (
+                    <span onClick={() => setOutTimerClicked(currentOutTimerClicked => !outTimerClicked)}>
+                        <Icon style={{ fontSize: 50, color: 'rgb(164, 161, 192)' }} >timer_off</Icon>
+                    </span>
+                )
+            }
         }
     }
 
@@ -64,20 +51,51 @@ function Student(props) {
     //individual student component that is rendered for every student fetched
     return (
         <div className="student-row">
+
             <div className="student-name">
                 <div className="student-initials">
                     {props.student.FirstName[0]}{props.student.LastName[0]}
                 </div>
+
                 {props.student.FirstName} {props.student.LastName}
             </div>
+
             <div className="student-time">
-                {inTimerClicked ? "Time In " : null}
-                {inTimeDisplay()}
-                {outTimerClicked ? "Time Out " : null}
-                {outTimeDisplay()}
+
+                <div className="time-column">
+                    <span style={{fontSize:'12px', fontWeight: '1000' }}>
+                        {inTimerClicked ? "Time In " : null}
+                    </span>
+                    <span style={{fontSize:'16px', fontWeight: '400' }}>
+                    {inTimeDisplay()}
+                    </span>
+                </div>
+
+                <div className="time-column">
+                    <span style={{fontSize:'12px', fontWeight: '800' }}>
+                        {outTimerClicked ? "Time Out " : null}
+                    </span>
+                    <span style={{fontSize:'16px', fontWeight: '400' }}>
+                    {outTimeDisplay()}
+                    </span>
+                </div>
+
             </div>
         </div>
     )
 }
 
 export default Student
+
+
+// From https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
