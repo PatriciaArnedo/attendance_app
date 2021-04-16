@@ -1,3 +1,4 @@
 export const GET_STUDENTS = "GET_STUDENTS"
+export const UPDATE_STUDENTS = "UPDATE_STUDENTS"
 
 

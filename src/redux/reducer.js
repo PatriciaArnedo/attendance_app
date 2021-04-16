@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-    GET_STUDENTS
+    GET_STUDENTS, UPDATE_STUDENTS
 } from './actionTypes'
 
 
@@ -11,6 +11,8 @@ const defaultState = {
 function studentsReducer(currentState = defaultState.students, action) {
     switch (action.type) {
         case GET_STUDENTS:
+            return action.payload
+        case UPDATE_STUDENTS:
             return action.payload
         default:
             return currentState

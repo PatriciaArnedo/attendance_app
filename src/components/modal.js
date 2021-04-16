@@ -17,6 +17,7 @@ function Modal(props) {
         }
     }
 
+    //holds the current selected date in state
     const [clickedDate, setClickedDate] = useState("2021-04-16")
 
     function getUniqueDates() {

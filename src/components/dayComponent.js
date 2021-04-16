@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 function Day(props) {
 
+    //displays day of the week
     function weekDay() {
         switch (props.id) {
             case 0:
@@ -21,9 +22,7 @@ function Day(props) {
         }
     }
 
-   
-   
-
+    //displays the day of the week and date
     return (
         <div onClick={()=>{props.onClick()}} className="calendar-day">
             {weekDay() + " "}
@@ -33,7 +32,7 @@ function Day(props) {
     )
 }
 
-
+//map state to props
 function msp(state) {
     return {
         students: state.students

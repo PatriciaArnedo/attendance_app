@@ -1,18 +1,29 @@
 import {
-    GET_STUDENTS
+    GET_STUDENTS, UPDATE_STUDENTS
 } from './actionTypes'
 
+import data from "../students.json"
+
+const studentsStorageKey = "STUDENTS_ARRAY_KEY"
+
+export const saveStudents = (students) => {
+    if (!students) {
+        return
+    }
+    localStorage.setItem(studentsStorageKey, JSON.stringify(students))
+}
 
 export const getStudents = () => {
     console.log("TEST in get students")
     return function (dispatch) {
-        fetch(`http://localhost:4000/students`)
-        .then(r => r.json())
-        .then(dataArr => {
-            console.log(dataArr, "DATA IN GET STUDENTS")
+        
             const studentsArray = []
-            const data = dataArr[0]
 
+            if (localStorage.getItem(studentsStorageKey) !== null) {
+                const stored = JSON.parse(localStorage.getItem(studentsStorageKey))
+                return dispatch({ type: GET_STUDENTS, payload: stored })
+            }
+            
             for (const [date, innerObj] of Object.entries(data)) {
                 for (const [id, student] of Object.entries(innerObj)) {
                     student['id'] = id
@@ -20,9 +31,15 @@ export const getStudents = () => {
                     studentsArray.push(student)
                 }
             }
+            
             console.log(studentsArray, "in action")
             dispatch({ type: GET_STUDENTS, payload: studentsArray })
-        })
-        .catch(console.log)
+    }
+}
+
+export const updateStudents = (studentsArray) => {
+    return function(dispatch) {
+        saveStudents(studentsArray)
+        dispatch({type:UPDATE_STUDENTS, payload: studentsArray})
     }
 }
